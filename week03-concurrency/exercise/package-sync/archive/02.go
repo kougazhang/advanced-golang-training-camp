@@ -31,7 +31,7 @@ type IceCreamMaker interface {
 }
 
 type Ben struct {
-	id   int
+	//	id   int
 	name string
 }
 
