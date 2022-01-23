@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"sync"
 	"sync/atomic"
 	"testing"
@@ -13,7 +12,7 @@ type Config struct {
 
 func (c *Config) T() {}
 
-func BenchmarkAtomic(b *testing.B) {
+func BenchmarkAtomicSync1(b *testing.B) {
 	var v atomic.Value
 	v.Store(&Config{})
 
@@ -33,7 +32,7 @@ func BenchmarkAtomic(b *testing.B) {
 			for n := 0; n < b.N; n++ {
 				cfg := v.Load().(*Config)
 				cfg.T()
-				fmt.Printf("%v\n", cfg)
+				// fmt.Printf("%v\n", cfg)
 			}
 			wg.Done()
 		}()
@@ -41,7 +40,7 @@ func BenchmarkAtomic(b *testing.B) {
 	wg.Wait()
 }
 
-func BenchmarkMutex(b *testing.B) {
+func BenchmarkMutexSync1(b *testing.B) {
 	var l sync.RWMutex
 	var cfg *Config
 
@@ -63,7 +62,7 @@ func BenchmarkMutex(b *testing.B) {
 				l.RLock()
 				cfg.T()
 				l.RUnlock()
-				fmt.Printf("%v\n", cfg)
+				// fmt.Printf("%v\n", cfg)
 			}
 			wg.Done()
 		}()
