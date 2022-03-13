@@ -1,0 +1,163 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "common/v1/common.proto";
+
+package fare;
+
+option go_package = "github.com/webmin7761/go-school/homework/final/api/fare/v1;fare";
+
+//机票价格服务
+service FareService {
+    //新建运价
+    rpc CreateFare(CreateFareRequest) returns (CreateFareReply){
+        option (google.api.http) = {
+            post: "/v1/fare/"
+            body: "*"
+        };        
+    }
+    //更新运价
+    rpc UpdateFare(UpdateFareRequest) returns (UpdateFareReply){
+        option (google.api.http) = {
+            put: "/v1/fare/{id}"
+            body: "*"
+        };
+    }      
+    //删除运价
+    rpc DeleteFare(DeleteFareRequest) returns (DeleteFareReply){
+        option (google.api.http) = {
+            delete: "/v1/fare/{id}"
+        };
+    }    
+    //查询运价
+    rpc GetFare(GetFareRequest) returns (GetFareReply){
+        option (google.api.http) = {
+            get: "/v1/fare/{id}"
+        };
+    }
+    //机票销售价格计算
+    rpc Pricing (PricingRequest) returns (PricingResponse){
+        option (google.api.http) = {
+            post: "/v1/fare/pricing"
+            body: "*"
+        };
+    }
+    //价格日历
+    rpc PriceCalendar (PriceCalendarRequest) returns (PriceCalendarResponse){
+        option (google.api.http) = {
+            post: "/v1/fare/calendar"
+            body: "*"
+        };
+    }    
+}
+
+message Fare {
+    int64 id = 1;
+    //起飞机场
+    string org_airport = 2;
+    //到达机场
+    string arr_airport = 3;
+    //乘客类型
+    common.PassageTypes passage_type = 4;        
+    //旅行开始日期
+    google.protobuf.Timestamp first_travel_date = 5;
+    //旅行结束日期
+    google.protobuf.Timestamp last_travel_date = 6;        
+    //价格
+    google.protobuf.DoubleValue amount = 7; 
+}
+
+message CreateFareRequest{
+    Fare fare = 1;            
+}
+
+message CreateFareReply {
+    //处理结果
+    common.Result result = 1;
+    int64 id = 2;
+}
+
+message UpdateFareRequest {
+    Fare fare = 1;      
+}
+
+message UpdateFareReply {
+    Fare fare = 1;      
+}
+
+message DeleteFareRequest {
+    int64 id = 1;
+}
+
+message DeleteFareReply {
+}
+
+message GetFareRequest {
+    int64 id = 1;
+}
+
+message GetFareReply {
+    //处理结果
+    common.Result result = 1;    
+    Fare fare = 2;
+}
+
+//机票销售价格计算请求
+message PricingRequest {
+    //起飞机场
+    string org_airport = 1;
+    //到达机场
+    string arr_airport = 2;
+    //航班日期
+    google.protobuf.Timestamp flight_datetime = 3;
+    //乘客类型
+    common.PassageTypes passage_type = 4;
+}
+
+//机票销售价格计算结果
+message PricingResponse {
+    //处理结果
+    common.Result result = 1;
+    //起飞机场
+    string org_airport = 2;
+    //到达机场
+    string arr_airport = 3;
+    //航班日期
+    google.protobuf.Timestamp flight_datetime = 4;
+    //乘客类型
+    common.PassageTypes passage_type = 5;
+    //价格
+    google.protobuf.DoubleValue amount = 6;
+}
+
+//价格日历1天信息
+message PriceCalendar {
+    //航班日期
+    google.protobuf.Timestamp flight_datetime = 1;
+    //乘客类型
+    common.PassageTypes passage_type = 2;
+    //价格
+    google.protobuf.DoubleValue amount = 3;
+}
+
+//查询价格日历请求
+message PriceCalendarRequest {
+    //起飞机场
+    string org_airport = 1;
+    //到达机场
+    string arr_airport = 2;
+    //航班日期
+    google.protobuf.Timestamp flight_datetime = 3;
+    //乘客类型
+    common.PassageTypes passage_type = 4;
+}
+
+//价格日历返回结果
+message PriceCalendarResponse{
+    //处理结果
+    common.Result result = 1;
+    //价格日历
+    repeated PriceCalendar price_calendar = 2;
+}

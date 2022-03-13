@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "common/v1/common.proto";
+
+package travel;
+
+option go_package = "github.com/webmin7761/go-school/homework/final/api/travel/v1;travel";
+
+service TravelService {
+    //旅游推荐
+    rpc Query(TravelRequest) returns (TravelResponse){
+        option (google.api.http) = {
+            post: "/v1/travel/query"
+            body: "*"
+        };        
+    }
+}
+
+message TravelRequest {
+    //起飞机场
+    string org_airport = 1;
+    //到达机场
+    string arr_airport = 2;
+    //航班日期
+    google.protobuf.Timestamp flight_datetime = 3;
+}
+
+message TravelResponse {
+    //处理结果
+    common.Result result = 1;
+    //起飞机场
+    string org_airport = 2;
+    //到达机场
+    string arr_airport = 3;
+    //航班日期
+    google.protobuf.Timestamp flight_datetime = 4;
+    //推荐信息
+    string travel_message = 5;
+}

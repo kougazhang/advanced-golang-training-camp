@@ -1,0 +1,273 @@
+{
+	"info": {
+		"_postman_id": "6220572e-8bcc-4532-a293-23ea4c9ac081",
+		"name": "go school",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [		
+		{
+			"name": "final",
+			"item": [
+				{
+					"name": "shop",
+					"item": [
+						{
+							"name": "shopping",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"org_airport\": \"SHA\",\r\n    \"arr_airport\": \"KMG\",\r\n    \"passage_type\": 1,\r\n    \"flight_datetime\": \"2018-06-04T02:11:31Z\"        \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:8001/v1/shop/shopping",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8001",
+									"path": [
+										"v1",
+										"shop",
+										"shopping"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "travel",
+					"item": [
+						{
+							"name": "travel",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"org_airport\": \"SHA\",\r\n    \"arr_airport\": \"KMG\",\r\n    \"flight_datetime\": \"2018-06-04T02:11:31Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:8002/v1/travel/query",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"v1",
+										"travel",
+										"query"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "fare",
+					"item": [
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fare\": {\r\n        \"id\": 2,\r\n        \"org_airport\": \"SHA\",\r\n        \"arr_airport\": \"PEK\",\r\n        \"passage_type\": 3,\r\n        \"first_travel_date\": \"2018-08-04T02:11:31Z\",\r\n        \"last_travel_date\": \"2022-08-04T02:11:31Z\",\r\n        \"amount\": {\r\n            \"value\": 568.53\r\n        }\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/v1/fare/2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"v1",
+										"fare",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/v1/fare/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"v1",
+										"fare",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/v1/fare/2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"v1",
+										"fare",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Fare\": {\r\n        \"org_airport\": \"SHA\",\r\n        \"arr_airport\": \"KMG\",\r\n        \"passage_type\": 1,\r\n        \"first_travel_date\": \"2018-06-04T02:11:31Z\",\r\n        \"last_travel_date\": \"2022-06-04T02:11:31Z\",\r\n        \"amount\": {\"value\":568.23}\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/v1/fare/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"v1",
+										"fare",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "pricing",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"org_airport\": \"SHA\",\r\n    \"arr_airport\": \"KMG\",\r\n    \"passage_type\": 1,\r\n    \"flight_datetime\": \"2018-06-04T02:11:31Z\"        \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/v1/fare/pricing",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"v1",
+										"fare",
+										"pricing"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "calendar",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"org_airport\": \"SHA\",\r\n    \"arr_airport\": \"KMG\",\r\n    \"passage_type\": 1,\r\n    \"flight_datetime\": \"2018-06-04T02:11:31Z\"        \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/v1/fare/calendar",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"v1",
+										"fare",
+										"calendar"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

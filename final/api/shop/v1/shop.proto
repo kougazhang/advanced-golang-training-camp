@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "common/v1/common.proto";
+import "fare/v1/fare.proto";
+
+package shop;
+
+option go_package = "github.com/webmin7761/go-school/homework/final/api/shop/v1;shop";
+
+//机票询价服务
+service ShopService {
+    //机票询价
+    rpc Shopping(ShoppingRequest) returns (ShoppingResponse){
+        option (google.api.http) = {
+            post: "/v1/shop/shopping"
+            body: "*"
+        };        
+    }
+}
+
+//机票询价请求
+message ShoppingRequest {
+    //起飞机场
+    string org_airport = 1;
+    //到达机场
+    string arr_airport = 2;
+    //航班日期
+    google.protobuf.Timestamp flight_datetime = 3;
+    //乘客类型
+    common.PassageTypes passage_type = 4;
+}
+
+//机票询价结果
+message ShoppingResponse {
+    //处理结果
+    common.Result result = 1;
+    //起飞机场
+    string org_airport = 2;
+    //到达机场
+    string arr_airport = 3;
+    //航班日期
+    google.protobuf.Timestamp flight_datetime = 4;
+    //乘客类型
+    common.PassageTypes passage_type = 5;
+    //价格
+    google.protobuf.DoubleValue amount = 6;
+    //价格日历
+    repeated fare.PriceCalendar price_calendar = 7;
+    //推荐信息
+    string travel_message = 8;
+}
+
